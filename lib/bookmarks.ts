@@ -15,7 +15,7 @@ export function getBookmarks(): Set<number> {
 
 export function saveBookmarks(ids: Set<number>): void {
   if (typeof window === 'undefined') return
-  localStorage.setItem(KEY, JSON.stringify([...ids]))
+  localStorage.setItem(KEY, JSON.stringify(Array.from(ids)))
 }
 
 export function toggleBookmark(id: number): Set<number> {
