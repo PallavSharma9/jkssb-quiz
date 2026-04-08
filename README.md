@@ -1,6 +1,10 @@
 # JKSSB Junior Assistant Quiz App
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-brightgreen?style=for-the-badge)](https://jkssb-quiz-git-main-pallavsharma9s-projects.vercel.app/)
+
 A mobile-first practice quiz app built for candidates preparing for the **JKSSB Junior Assistant** examination. It covers all four sections of the syllabus with 2,112 questions, verified correct answers, and detailed step-by-step explanations.
+
+**[Try it live →](https://jkssb-quiz-git-main-pallavsharma9s-projects.vercel.app/)**
 
 ---
 
@@ -30,9 +34,11 @@ The JKSSB Junior Assistant exam tests four subjects. This app covers all of them
 
 ---
 
-## Screenshots
+## Live Demo
 
-> Coming soon
+**[https://jkssb-quiz-git-main-pallavsharma9s-projects.vercel.app/](https://jkssb-quiz-git-main-pallavsharma9s-projects.vercel.app/)**
+
+Open on your phone for the best experience.
 
 ---
 
