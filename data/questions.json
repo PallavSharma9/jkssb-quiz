@@ -46284,7 +46284,7 @@
     "unitLabel": "Basic Concepts of Computers",
     "topic": "operating_system",
     "topicLabel": "Operating System",
-    "question": "Which of the following are advantages of multiprogramming?",
+    "question": "Which of the following are advantages of multiprogramming?\n    1. Increased CPU utilization \n    2. Decreased memory usage \n    3. Increased throughput \n    4. Reduced response time ",
     "passage": null,
     "passageTitle": null,
     "options": [
