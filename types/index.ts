@@ -11,6 +11,8 @@ export interface Question {
   correct: number
   source: string
   bookmarked: boolean
+  explanation?: string
+  explanationSteps?: string[]
 }
 
 export interface TopicConfig {

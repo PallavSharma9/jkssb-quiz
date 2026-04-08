@@ -25,6 +25,69 @@ function getUnitForTopic(topicId: string) {
 
 function blankAttempt(): Attempt { return { state: 'unanswered', selected: null } }
 
+// ─── ExplanationPanel ─────────────────────────────────────────────────────────
+function ExplanationPanel({ q, attempt }: { q: Question; attempt: Attempt }) {
+  const letters = ['A', 'B', 'C', 'D']
+  const isCorrect = attempt.state === 'correct'
+  const isSkipped = attempt.state === 'skipped'
+
+  const borderCls = isCorrect
+    ? 'border-emerald-400 bg-emerald-50'
+    : isSkipped
+    ? 'border-gray-300 bg-gray-50'
+    : 'border-red-400 bg-red-50'
+
+  const headerCls = isCorrect
+    ? 'text-emerald-700'
+    : isSkipped
+    ? 'text-gray-600'
+    : 'text-red-700'
+
+  return (
+    <div className={`rounded-2xl border-2 ${borderCls} overflow-hidden animate-slideDown`}>
+      {/* Status header */}
+      <div className={`px-4 py-3 font-bold text-sm ${headerCls}`}>
+        {isCorrect ? '✅ Correct!' : isSkipped ? '⏭️ Skipped' : '❌ Wrong!'}
+        {!isCorrect && !isSkipped && (
+          <span className="block mt-1 text-emerald-700 font-semibold text-xs">
+            💡 Correct Answer: {letters[q.correct]}) {q.options[q.correct].replace(/^[A-D]\)\s*/i, '')}
+          </span>
+        )}
+      </div>
+
+      {/* Explanation body */}
+      {q.explanation && (
+        <div className="px-4 pb-4">
+          <div className="flex items-center gap-1.5 mb-2 mt-1">
+            <span className="text-base">📖</span>
+            <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">Explanation</span>
+          </div>
+          <p className="text-sm text-gray-700 leading-relaxed">{q.explanation}</p>
+
+          {q.explanationSteps && q.explanationSteps.length > 0 && (
+            <div className="mt-3">
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="text-base">📝</span>
+                <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">Step by Step</span>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+                {q.explanationSteps.map((step, i) => (
+                  <div key={i} className="px-3 py-2 flex items-start gap-2">
+                    <span className="shrink-0 w-5 h-5 rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold flex items-center justify-center mt-0.5">
+                      {i + 1}
+                    </span>
+                    <p className="text-xs text-gray-700 leading-relaxed">{step.replace(/^Step \d+:\s*/i, '')}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ─── PassageBox ───────────────────────────────────────────────────────────────
 function PassageBox({ title, text }: { title: string | null; text: string }) {
   const [open, setOpen] = useState(true)
@@ -430,19 +493,6 @@ export default function QuizPage({ params }: { params: { topic: string } }) {
   const answeredCount = attempts.filter(a => a.state !== 'unanswered').length
   const showBanner = mounted && savedAnsweredCount > 0 && !bannerDismissed && !isRetryMode
 
-  const feedbackInfo = (() => {
-    if (attempt.state === 'correct')
-      return { text: '✅ Correct!', cls: 'bg-emerald-50 border-emerald-200 text-emerald-700' }
-    if (attempt.state === 'wrong')
-      return {
-        text: `❌ Wrong! Correct answer: ${['A','B','C','D'][q.correct]}) ${q.options[q.correct].replace(/^[A-D]\)\s*/i, '')}`,
-        cls: 'bg-red-50 border-red-200 text-red-700',
-      }
-    if (attempt.state === 'skipped')
-      return { text: '⏭️ Skipped', cls: 'bg-gray-100 border-gray-200 text-gray-500' }
-    return null
-  })()
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Top bar */}
@@ -534,14 +584,10 @@ export default function QuizPage({ params }: { params: { topic: string } }) {
             ))}
           </div>
 
-          {/* Feedback + Next */}
+          {/* Explanation Panel + Next */}
           {answered && (
             <div className="space-y-3">
-              {feedbackInfo && (
-                <div className={`rounded-xl px-4 py-3 border text-sm font-medium leading-snug ${feedbackInfo.cls}`}>
-                  {feedbackInfo.text}
-                </div>
-              )}
+              <ExplanationPanel q={q} attempt={attempt} />
               <p className="text-xs text-gray-400 px-1">📄 {q.source}</p>
               <button onClick={handleNext}
                 className="w-full bg-indigo-600 text-white font-semibold py-4 rounded-xl hover:bg-indigo-700 active:scale-[0.98] transition-all text-base">
