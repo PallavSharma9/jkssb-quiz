@@ -46534,7 +46534,7 @@
     "unitLabel": "Basic Concepts of Computers",
     "topic": "operating_system",
     "topicLabel": "Operating System",
-    "question": "Which of the following statements about deadlocks are correct?",
+    "question": "Which of the following statements about deadlocks are correct?\n    1. Deadlock occurs when each process in a set waits for a resource held by another\n    2. Deadlock can be avoided using the Banker's Algorithm\n    3. Circular wait is a necessary condition for deadlock\n    4. Deadlock resolution requires process termination",
     "passage": null,
     "passageTitle": null,
     "options": [
