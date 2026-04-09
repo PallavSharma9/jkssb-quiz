@@ -46586,7 +46586,7 @@
     "unitLabel": "Basic Concepts of Computers",
     "topic": "operating_system",
     "topicLabel": "Operating System",
-    "question": "Which of the following statements about paging are true?",
+    "question": "Which of the following statements about paging are true?\n    1. Paging eliminates external fragmentation \n    2. Paging incurs internal fragmentation \n    3. Paging uses logical and physical address spaces \n    4. Paging requires contiguous memory allocation",
     "passage": null,
     "passageTitle": null,
     "options": [
