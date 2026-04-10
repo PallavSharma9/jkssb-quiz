@@ -46716,7 +46716,7 @@
     "unitLabel": "Basic Concepts of Computers",
     "topic": "operating_system",
     "topicLabel": "Operating System",
-    "question": "Consider the following file allocation techniques:",
+    "question": "Consider the following file allocation techniques:\n• i. Contiguous Allocation — 1. Simple, fast access but causes external fragmentation\n• ii. Linked Allocation — 2. Uses pointers; poor random access\n• iii. Indexed Allocation — 3. Supports direct access using index block\n• iv. Index node — 4. Stores metadata and block pointers in UNIX ",
     "passage": null,
     "passageTitle": null,
     "options": [
